@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                <!--<li>{{ message }}</li>-->
+                <div id="alerta" class="alert alert-dismissible alert-danger">
+                    <a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/></svg></a>
+                    <strong>{{ message }}</strong>
+                </div>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div class="contenedor">
+        <h2>Bienvenido</h2>
+        <form method="post" action="/logeo">
+            <div class="elemento">
+                <label class="usuario"><img src="static/iconos/person.svg"></label>
+                <input type="text" id="usuario" name="usuario" required>
+            </div>
+            <div class="elemento">
+                <label for="password"><img src="static/iconos/key.svg"></label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="elemento">
+                <input type="submit" value="Iniciar sesion">
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
